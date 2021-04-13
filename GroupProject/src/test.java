@@ -9,7 +9,7 @@ public class test {
 		System.out.println("Hello people");
 		TST<Integer> searchTree = new TST<Integer>();
 		
-		File file =new File("stops.txt");
+		File file =new File("");
 		Scanner s= new Scanner(file);
 		s.nextLine();
 		while(s.hasNextLine()) {
