@@ -7,7 +7,7 @@ public class TST<Value> {
 	private static class Node<Value> {
 		private char c;                        // character
 		private Node<Value> left, mid, right;  // left, middle, and right subtries
-		private Value val;                     // value associated with string
+		private String[] val;                     // value associated with string
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class TST<Value> {
 	 *     and {@code null} if the key is not in the symbol table
 	 * @throws IllegalArgumentException if {@code key} is {@code null}
 	 */
-	public Value get(String key) {
+	public String[] get(String key) {
 		if (key == null) {
 			throw new IllegalArgumentException("calls get() with null argument");
 		}
@@ -71,28 +71,28 @@ public class TST<Value> {
 	 * with the new value if the key is already in the symbol table.
 	 * If the value is {@code null}, this effectively deletes the key from the symbol table.
 	 * @param key the key
-	 * @param val the value
+	 * @param value the value
 	 * @throws IllegalArgumentException if {@code key} is {@code null}
 	 */
-	public void put(String key, Value val) {
+	public void put(String key, String[] value) {
 		if (key == null) {
 			throw new IllegalArgumentException("calls put() with null key");
 		}
 		if (!contains(key)) n++;
-		else if(val == null) n--;       // delete existing key
-		root = put(root, key, val, 0);
+		else if(value == null) n--;       // delete existing key
+		root = put(root, key, value, 0);
 	}
 
-	private Node<Value> put(Node<Value> x, String key, Value val, int d) {
+	private Node<Value> put(Node<Value> x, String key, String[] value, int d) {
 		char c = key.charAt(d);
 		if (x == null) {
 			x = new Node<Value>();
 			x.c = c;
 		}
-		if      (c < x.c)               x.left  = put(x.left,  key, val, d);
-		else if (c > x.c)               x.right = put(x.right, key, val, d);
-		else if (d < key.length() - 1)  x.mid   = put(x.mid,   key, val, d+1);
-		else                            x.val   = val;
+		if      (c < x.c)               x.left  = put(x.left,  key, value, d);
+		else if (c > x.c)               x.right = put(x.right, key, value, d);
+		else if (d < key.length() - 1)  x.mid   = put(x.mid,   key, value, d+1);
+		else                            x.val   = value;
 		return x;
 	}
 

@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class test {
@@ -8,18 +10,28 @@ public class test {
 		// TODO Auto-generated method stub
 		System.out.println("Hello people");
 		TST<Integer> searchTree = new TST<Integer>();
-		
-		File file =new File("");
+
+		File file =new File("stops.txt");
 		Scanner s= new Scanner(file);
-		s.nextLine();
+		String namesOfData=s.nextLine();
+		System.out.println(namesOfData);
 		while(s.hasNextLine()) {
 			String key;
-			int value;
-			String arr[]= s.nextLine().split(",");
-			key=arr[2];
-			value=Integer.parseInt(arr[1]);
-			System.out.println(value);
+			String [] value= s.nextLine().split(",");
+			key=value[2];
+			if(key.charAt(2)==' ') {
+				char first=key.charAt(0);
+				char second=key.charAt(1);
+				String append= " "+first+second;
+				key = key+append;
+				key=key.substring(3);
+			}
+
+			searchTree.put(key, value);
 		}
+		Iterable<String> test= searchTree.keysThatMatch("CAULFEILD");
+		System.out.println(test);
+
 	}
 
 }
