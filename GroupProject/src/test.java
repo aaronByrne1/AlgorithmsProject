@@ -1,12 +1,16 @@
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Spliterator;
 
 public class test {
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		System.out.println("Hello people");
 		TST<Integer> searchTree = new TST<Integer>();
@@ -40,12 +44,13 @@ public class test {
 			if(searchTree.contains(userInput)==true) {
 				notAKey=false;
 			}
-			System.out.println(searchTree.keysWithPrefix(userInput));
-			
+			Spliterator<String> poo =searchTree.keysWithPrefix(userInput).spliterator();
+			poo.forEachRemaining((n)->System.out.println(n));			
 		}
 		String test[]= searchTree.get(userInput);
 		System.out.println(Arrays.toString(test));
 
+	       
 	}
 
 }
