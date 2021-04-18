@@ -26,11 +26,25 @@ public class test {
 				key = key+append;
 				key=key.substring(3);
 			}
-
 			searchTree.put(key, value);
 		}
-		Iterable<String> test= searchTree.keysThatMatch("CAULFEILD");
-		System.out.println(test);
+		//String test[]=searchTree.;
+		//Iterable<String> test= searchTree.keysThatMatch("CAULFEILD");
+		//System.out.println(Arrays.toString(test));
+		
+		boolean notAKey=true;
+		String userInput="";
+		while(notAKey==true) {
+			Scanner input =new Scanner(System.in);
+			userInput =input.nextLine();
+			if(searchTree.contains(userInput)==true) {
+				notAKey=false;
+			}
+			System.out.println(searchTree.keysWithPrefix(userInput));
+			
+		}
+		String test[]= searchTree.get(userInput);
+		System.out.println(Arrays.toString(test));
 
 	}
 
