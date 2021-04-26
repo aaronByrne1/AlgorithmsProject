@@ -13,15 +13,37 @@ public class Arrival_Time_Search {
 	
 	public static void main(String[] args)
 	{
+		StopTimeBST<LocalTime, stopTime> stopTime;
+		stopTime = parseStopTimeInfo();
+		
+//		StopTimeBST<LocalTime, stopTime> stopTimeBst = new StopTimeBST<LocalTime, stopTime>();
+//		
+//		System.out.println("finished creating");
+//		
+//		stopTimeBst.put(stopTime[100].getArrivalTime(), stopTime[100]);
+//		stopTimeBst.put(stopTime[200].getArrivalTime(), stopTime[200]);
+//		stopTimeBst.put(stopTime[300].getArrivalTime(), stopTime[300]);
+//		
+//		System.out.println("finished putting");
+//		
+//		System.out.println(stopTimeBst.prettyPrintKeys());
+//		
+//		System.out.println("finished pretty printing");
+//		
+//		List<stopTime> entry = stopTimeBst.get(LocalTime.parse("07:16:35"));
+//		for(int i=0;i<entry.size(); i++)
+//			entry.get(i).print();
+		
+	}
+	
+	public static StopTimeBST<LocalTime, stopTime> parseStopTimeInfo() {
 		System.out.println("Starting");
-		stopTime[] stopTimeArray = new stopTime[1692890]; 
-		LocalTime maxTime = LocalTime.parse("23:59:59");
+		StopTimeBST<LocalTime, stopTime> stopTimeBst = new StopTimeBST<LocalTime, stopTime>(); 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm:ss");
 		try {
 			File file = new File("C:/Users/Stephen/stop_times.txt");
 			Scanner reader = new Scanner(file);
-			int i =0;
-			String firstLine = reader.nextLine();
+			reader.nextLine();
 			while (reader.hasNextLine()){
 				String data = reader.nextLine();
 				String[] stopTimeInfo = data.split(",");
@@ -45,25 +67,20 @@ public class Arrival_Time_Search {
 												Integer.parseInt(stopTimeInfo[6]),
 												Integer.parseInt(stopTimeInfo[7]),
 												Float.parseFloat(stopTimeInfo[8]));
-					stopTimeArray[i] = entry;
+					stopTimeBst.put(entry.getArrivalTime(), entry);
 					
-				} catch (DateTimeParseException d) {i--;}
+				} catch (DateTimeParseException d) {}
 
 				
 				for(int ii=0; ii<stopTimeInfo.length; ii++) 
 					System.out.print(stopTimeInfo[ii] + " ");
 				System.out.print("\n");
-				i++;
 			}	
 			
 			
 			reader.close();	
 			System.out.println("Finishing");
-			System.out.println(i);
 		} catch (IOException e) {}
-		
-//		for(int i=0; i<stopTimeArray.length; i++)
-//			System.out.println(i + ": " +stopTimeArray[i].getArrivalTime());
-		
+		return stopTimeBst;
 	}
 }
