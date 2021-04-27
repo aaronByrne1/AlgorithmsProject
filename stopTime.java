@@ -39,4 +39,9 @@ public class stopTime {
 	{
 		return trip_id;
 	}
+	
+	public void setTripId(int i)
+	{
+		trip_id = i;
+	}
 } 
