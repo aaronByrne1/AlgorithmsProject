@@ -1,39 +1,37 @@
 import java.io.File;
-
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
-import java.util.*;
-import java.time.*;
+import java.util.Scanner;
+import java.util.List;
+import java.util.Collections;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.io.BufferedReader;
-import java.io.FileReader;
 
 public class Arrival_Time_Search {
 
 	
-	public static void main(String[] args)
+//	public static void main(String[] args)
+//	{
+//		StopTimeBST<LocalTime, stopTime> stopTime;
+//		stopTime = parseStopTimeInfo();
+//		
+//		search(stopTime, LocalTime.parse("14:30:00"));
+//
+//	}
+	
+	public static List<stopTime> search(StopTimeBST<LocalTime, stopTime> stopTimes, LocalTime arrivalTime)
 	{
-		StopTimeBST<LocalTime, stopTime> stopTime;
-		stopTime = parseStopTimeInfo();
-		
-//		StopTimeBST<LocalTime, stopTime> stopTimeBst = new StopTimeBST<LocalTime, stopTime>();
-//		
-//		System.out.println("finished creating");
-//		
-//		stopTimeBst.put(stopTime[100].getArrivalTime(), stopTime[100]);
-//		stopTimeBst.put(stopTime[200].getArrivalTime(), stopTime[200]);
-//		stopTimeBst.put(stopTime[300].getArrivalTime(), stopTime[300]);
-//		
-//		System.out.println("finished putting");
-//		
-//		System.out.println(stopTimeBst.prettyPrintKeys());
-//		
-//		System.out.println("finished pretty printing");
-//		
-//		List<stopTime> entry = stopTimeBst.get(LocalTime.parse("07:16:35"));
-//		for(int i=0;i<entry.size(); i++)
-//			entry.get(i).print();
-		
+		List<stopTime> listOfTripIds = stopTimes.get(arrivalTime);
+		if(listOfTripIds.isEmpty())
+			System.out.print("no trips matching this arrival time");
+		else
+		{
+			for(int i=0; i<listOfTripIds.size(); i++)
+			{
+				listOfTripIds.get(i).print();
+			}
+		}
+		return listOfTripIds;
 	}
 	
 	public static StopTimeBST<LocalTime, stopTime> parseStopTimeInfo() {
@@ -81,6 +79,71 @@ public class Arrival_Time_Search {
 			reader.close();	
 			System.out.println("Finishing");
 		} catch (IOException e) {}
+		
+		sortLists(stopTimeBst);
 		return stopTimeBst;
 	}
+	
+	public static void sortLists(StopTimeBST<LocalTime, stopTime> stopTimes) 
+	{
+//		List<stopTime> entry;
+//		entry = quickSort(stopTimes.getRoot().getVals());
+		
+		if(stopTimes.isEmpty()) return;
+		sortLists(stopTimes.getRoot());
+		
+	}
+	
+	private static void sortLists(StopTimeBST.Node x)
+	{
+		if(x.getLeft() == null && x.getRight() == null)
+		{
+			quickSort(x.getVals());
+			return;
+		}
+		
+		if(x.getLeft() != null)
+		{
+			sortLists(x.getLeft());
+			quickSort(x.getVals());
+		}
+		
+		if(x.getRight() != null)
+		{
+			sortLists(x.getRight());
+			quickSort(x.getVals());
+		}
+		
+		return;
+	}
+
+    static List<stopTime> quickSort (List<stopTime> stopTime){
+	
+    	quickSort(stopTime, 0, stopTime.size() -1 );
+    	return stopTime;
+    }
+    
+    static void quickSort(List<stopTime> stopTime, int begin, int end) {
+        if (begin < end) {
+            int partitionIndex = partition(stopTime, begin, end);
+
+            quickSort(stopTime, begin, partitionIndex-1);
+            quickSort(stopTime, partitionIndex+1, end);
+        }
+    }
+    
+    static int partition(List<stopTime> stopTime, int begin, int end) {
+        stopTime pivot = stopTime.get(end);
+        int i = (begin-1);
+
+        for (int j = begin; j < end; j++) {
+            if (stopTime.get(j).getTripId() <= pivot.getTripId()) {
+                i++;
+                Collections.swap(stopTime, i, j);
+            }
+        }
+
+        Collections.swap(stopTime, i+1, end);
+        return i+1;
+    }
 }
