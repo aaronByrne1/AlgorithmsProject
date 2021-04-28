@@ -10,14 +10,14 @@ import java.time.format.DateTimeFormatter;
 public class Arrival_Time_Search {
 
 	
-	public static void main(String[] args)
-	{
-		StopTimeBST<LocalTime, stopTime> stopTime;
-		stopTime = parseStopTimeInfo();
+	// public static void main(String[] args)
+	// {
+	// 	StopTimeBST<LocalTime, stopTime> stopTime;
+	// 	stopTime = parseStopTimeInfo();
 		
-		search(stopTime, LocalTime.parse("14:30:00"));
+	// 	search(stopTime, LocalTime.parse("14:30:00"));
 
-	}
+	// }
 	
 	public static List<stopTime> search(StopTimeBST<LocalTime, stopTime> stopTimes, LocalTime arrivalTime)
 	{
@@ -39,7 +39,7 @@ public class Arrival_Time_Search {
 		StopTimeBST<LocalTime, stopTime> stopTimeBst = new StopTimeBST<LocalTime, stopTime>(); 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm:ss");
 		try {
-			File file = new File("C:/Users/Stephen/stop_times.txt");
+			File file = new File("stop_times.txt");
 			Scanner reader = new Scanner(file);
 			reader.nextLine();
 			while (reader.hasNextLine()){
