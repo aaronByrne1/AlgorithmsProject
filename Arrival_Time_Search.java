@@ -10,14 +10,14 @@ import java.time.format.DateTimeFormatter;
 public class Arrival_Time_Search {
 
 	
-//	public static void main(String[] args)
-//	{
-//		StopTimeBST<LocalTime, stopTime> stopTime;
-//		stopTime = parseStopTimeInfo();
-//		
-//		search(stopTime, LocalTime.parse("14:30:00"));
-//
-//	}
+	public static void main(String[] args)
+	{
+		StopTimeBST<LocalTime, stopTime> stopTime;
+		stopTime = parseStopTimeInfo();
+		
+		search(stopTime, LocalTime.parse("14:30:00"));
+
+	}
 	
 	public static List<stopTime> search(StopTimeBST<LocalTime, stopTime> stopTimes, LocalTime arrivalTime)
 	{
