@@ -39,11 +39,12 @@ public class CompetitionDijkstra {
 
 			File file = new File("stops.txt");
 			Scanner scanner = new Scanner(file);
-			int count = 0;
+			int i = 0;
 			String infoline = scanner.nextLine();
 			while (scanner.hasNextLine()) {
-				scanner.nextLine(); // Count number of Stops
-				count++;
+				String[] stopSplit = scanner.nextLine().split(","); 
+				stop_ids[i] = Integer.parseInt(stopSplit[i]);
+				i++;
 				
 			}
 			G = new Graph(50000);
