@@ -10,9 +10,14 @@ public class searchByStopName {
 
 	/*public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		
+		createTST();
+		Scanner s= new Scanner(System.in);
+		String input=s.nextLine();
+		functionality(input);
+
 	}*/
-	
+	public static TST<Integer> searchTree = new TST<Integer>();
+	public static String[] dataTypes;
 	public static void printResult(String data[], String namesOfData[]) {
 		namesOfData[0]="stop_id";
 		System.out.println();
@@ -22,12 +27,11 @@ public class searchByStopName {
 	}
 	
 	public static void createTST() throws FileNotFoundException {
-		TST<Integer> searchTree = new TST<Integer>();
 
 		File file =new File("stops.txt");
 		Scanner s= new Scanner(file);
 		String namesOfData=s.nextLine();
-		String[] dataTypes=namesOfData.split(",");
+		dataTypes=namesOfData.split(",");
 		while(s.hasNextLine()) {
 			String key;
 			String[] value= s.nextLine().split(",");
@@ -45,23 +49,15 @@ public class searchByStopName {
 		s.close();
 
 	}
-	public static void functionality(TST<Integer> searchTree,String dataTypes[]) {
-		boolean quit=true;
-		String userInput="";
+	public static void functionality( String userInput) {
+		
+		
 		ArrayList<String> list = new ArrayList<String>();
-		Scanner input =new Scanner(System.in);
-
-		while(quit==true) {
-			list.clear();
-			userInput =input.nextLine();
-			if(userInput=="quit") {
-				quit=false;
-			}
+			
 			Spliterator<String> split =searchTree.keysWithPrefix(userInput.toUpperCase()).spliterator();
 			split.forEachRemaining((n)->list.add(n));
 			list.forEach((n)->printResult(searchTree.get(n), dataTypes));
-		}
-		input.close();
+		
 	}
 
 }
