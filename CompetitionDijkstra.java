@@ -43,7 +43,7 @@ public class CompetitionDijkstra {
 			String infoline = scanner.nextLine();
 			while (scanner.hasNextLine()) {
 				String[] stopSplit = scanner.nextLine().split(","); 
-				stop_ids[i] = Integer.parseInt(stopSplit[i]);
+				stop_ids[i] = Integer.parseInt(stopSplit[0]);
 				i++;
 				
 			}
