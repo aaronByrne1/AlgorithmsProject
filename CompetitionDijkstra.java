@@ -31,6 +31,7 @@ public class CompetitionDijkstra {
 	@SuppressWarnings("unused")
 	private IndexMinPQ<Double> pq;
 	@SuppressWarnings("unused")
+	public int[] stop_ids;
 	public double cost;
 	private Graph G;
 
