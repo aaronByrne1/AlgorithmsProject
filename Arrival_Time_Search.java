@@ -10,18 +10,18 @@ import java.time.format.DateTimeFormatter;
 public class Arrival_Time_Search {
 
 	
-	// public static void main(String[] args)
-	// {
-	// 	StopTimeBST<LocalTime, stopTime> stopTime;
-	// 	stopTime = parseStopTimeInfo();
-		
-	// 	search(stopTime, LocalTime.parse("14:30:00"));
-
-	// }
-	
-	public static List<stopTime> search(StopTimeBST<LocalTime, stopTime> stopTimes, LocalTime arrivalTime)
+	public static void main(String[] args)
 	{
-		List<stopTime> listOfTripIds = stopTimes.get(arrivalTime);
+		StopTimeBST<LocalTime, stopTime> stopTime;
+		stopTime = parseStopTimeInfo();
+		
+		search(stopTime, "14:30:00");
+
+	}
+	
+	public static List<stopTime> search(StopTimeBST<LocalTime, stopTime> stopTimes, String arrivalTime)
+	{
+		List<stopTime> listOfTripIds = stopTimes.get(LocalTime.parse(arrivalTime));
 		if(listOfTripIds.isEmpty())
 			System.out.print("no trips matching this arrival time");
 		else
@@ -39,12 +39,13 @@ public class Arrival_Time_Search {
 		StopTimeBST<LocalTime, stopTime> stopTimeBst = new StopTimeBST<LocalTime, stopTime>(); 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm:ss");
 		try {
-			File file = new File("stop_times.txt");
+			File file = new File("C:/Users/Stephen/AlgorithmsProject/stop_times.txt");
 			Scanner reader = new Scanner(file);
 			reader.nextLine();
 			while (reader.hasNextLine()){
 				String data = reader.nextLine();
 				String[] stopTimeInfo = data.split(",");
+				
 				
 				if(stopTimeInfo.length < 9) 
 				{
@@ -62,12 +63,14 @@ public class Arrival_Time_Search {
 												LocalTime.parse(stopTimeInfo[2].trim(), formatter),
 												Integer.parseInt(stopTimeInfo[3]),
 												Integer.parseInt(stopTimeInfo[4]),
+												stopTimeInfo[5],
 												Integer.parseInt(stopTimeInfo[6]),
 												Integer.parseInt(stopTimeInfo[7]),
 												Float.parseFloat(stopTimeInfo[8]));
 					stopTimeBst.put(entry.getArrivalTime(), entry);
 					
 				} catch (DateTimeParseException d) {}
+				  
 
 				
 				for(int ii=0; ii<stopTimeInfo.length; ii++) 
@@ -86,8 +89,6 @@ public class Arrival_Time_Search {
 	
 	public static void sortLists(StopTimeBST<LocalTime, stopTime> stopTimes) 
 	{
-//		List<stopTime> entry;
-//		entry = quickSort(stopTimes.getRoot().getVals());
 		
 		if(stopTimes.isEmpty()) return;
 		sortLists(stopTimes.getRoot());
