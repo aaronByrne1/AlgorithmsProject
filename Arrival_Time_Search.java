@@ -39,7 +39,7 @@ public class Arrival_Time_Search {
 		StopTimeBST<LocalTime, stopTime> stopTimeBst = new StopTimeBST<LocalTime, stopTime>(); 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm:ss");
 		try {
-			File file = new File("C:/Users/Stephen/AlgorithmsProject/stop_times.txt");
+			File file = new File("stop_times.txt");
 			Scanner reader = new Scanner(file);
 			reader.nextLine();
 			while (reader.hasNextLine()){
