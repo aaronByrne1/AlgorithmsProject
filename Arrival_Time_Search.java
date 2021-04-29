@@ -9,16 +9,6 @@ import java.time.format.DateTimeFormatter;
 
 public class Arrival_Time_Search {
 
-	
-//	public static void main(String[] args)
-//	{
-//		StopTimeBST<LocalTime, stopTime> stopTime;
-//		stopTime = parseStopTimeInfo();
-//		
-//		search(stopTime, "14:30:00");
-//
-//	}
-	
 	public static List<stopTime> search(StopTimeBST<LocalTime, stopTime> stopTimes, String arrivalTime)
 	{
 		List<stopTime> listOfTripIds = stopTimes.get(LocalTime.parse(arrivalTime));
@@ -35,7 +25,6 @@ public class Arrival_Time_Search {
 	}
 	
 	public static StopTimeBST<LocalTime, stopTime> parseStopTimeInfo() {
-		System.out.println("Starting");
 		StopTimeBST<LocalTime, stopTime> stopTimeBst = new StopTimeBST<LocalTime, stopTime>(); 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm:ss");
 		try {
@@ -70,17 +59,8 @@ public class Arrival_Time_Search {
 					stopTimeBst.put(entry.getArrivalTime(), entry);
 					
 				} catch (DateTimeParseException d) {}
-				  
-
-				
-				for(int ii=0; ii<stopTimeInfo.length; ii++) 
-					System.out.print(stopTimeInfo[ii] + " ");
-				System.out.print("\n");
-			}	
-			
-			
+			}		
 			reader.close();	
-			System.out.println("Finishing");
 		} catch (IOException e) {}
 		
 		sortLists(stopTimeBst);
@@ -89,10 +69,8 @@ public class Arrival_Time_Search {
 	
 	public static void sortLists(StopTimeBST<LocalTime, stopTime> stopTimes) 
 	{
-		
 		if(stopTimes.isEmpty()) return;
 		sortLists(stopTimes.getRoot());
-		
 	}
 	
 	private static void sortLists(StopTimeBST.Node x)
@@ -143,7 +121,6 @@ public class Arrival_Time_Search {
                 Collections.swap(stopTime, i, j);
             }
         }
-
         Collections.swap(stopTime, i+1, end);
         return i+1;
     }
