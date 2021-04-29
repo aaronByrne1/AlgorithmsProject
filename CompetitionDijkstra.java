@@ -25,13 +25,13 @@ public class CompetitionDijkstra {
      * @param sA, sB, sC: speeds for 3 contestants
     */
 	@SuppressWarnings("unused")
-	public DirectedEdge[] edgeTo;
+	private DirectedEdge[] edgeTo;
 	@SuppressWarnings("unused")
 	private double[] distTo;
 	@SuppressWarnings("unused")
 	private IndexMinPQ<Double> pq;
 	@SuppressWarnings("unused")
-	private double maxDistance;
+	public double cost;
 	private Graph G;
 
 	CompetitionDijkstra() {
@@ -111,9 +111,9 @@ public class CompetitionDijkstra {
     	{		
     		Path.distTo(End_id);
     		Path.pathTo(End_id);
-    		Double cost = Path.distTo(End_id);
+    		cost = Path.distTo(End_id);
     		Stack<DirectedEdge> ShortestPath  = Path.pathTo(End_id); 
-    		String str = cost + ShortestPath.toString();
+    		String str =ShortestPath.toString();
     		
     		return str;	
     	}
