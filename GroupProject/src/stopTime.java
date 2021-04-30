@@ -31,10 +31,10 @@ public class stopTime {
 	
 	public void print()
 	{
-		System.out.print(trip_id + " " + arrival_time + " " + " " + departure_time + " " + stop_id + " " + stop_sequence + " " + pickup_type + " "
-				+ stop_headsign + " " + drop_off_type + " " + shape_dist_traveled + "\n");
+		System.out.print("Trip_id = " + trip_id + "\n" + "Arrival Time = " + arrival_time + "\n" + "Departure Time = " + departure_time + "\n" + "Stop ID =  " +
+				stop_id + "\n" + "Stop Sequence = " + stop_sequence + "Pickup Type = " + pickup_type + "\n" + "Stop Headsign = "
+				+ stop_headsign + "\n"+ "Drop Off Type = " + drop_off_type +"\n" + "Distance Travelled =  " + shape_dist_traveled + "\n" + "\n");
 	}
-	
 	public LocalTime getArrivalTime()
 	{
 		return arrival_time;

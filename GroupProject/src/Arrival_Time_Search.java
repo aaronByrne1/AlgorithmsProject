@@ -11,15 +11,17 @@ public class Arrival_Time_Search {
 
 	public static List<stopTime> search(StopTimeBST<LocalTime, stopTime> stopTimes, String arrivalTime)
 	{
-		List<stopTime> listOfTripIds = stopTimes.get(LocalTime.parse(arrivalTime));
-		if(listOfTripIds.isEmpty())
-			System.out.print("no trips matching this arrival time");
-		else
-		{
+		List<stopTime> listOfTripIds;
+		try {
+			listOfTripIds = stopTimes.get(LocalTime.parse(arrivalTime));
+			
 			for(int i=0; i<listOfTripIds.size(); i++)
 			{
 				listOfTripIds.get(i).print();
 			}
+		} catch(NullPointerException N) { 
+			System.out.print("No Arrival Time matching this input");
+			return null;
 		}
 		return listOfTripIds;
 	}
