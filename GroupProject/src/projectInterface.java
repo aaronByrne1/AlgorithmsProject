@@ -6,6 +6,8 @@ import java.time.LocalTime;
 
 public class projectInterface {
 	public static void main(String[] args) {
+		StopTimeBST<LocalTime, stopTime> stopTime;
+		stopTime = Arrival_Time_Search.parseStopTimeInfo();
 		try {
 			searchByStopName.createTST();
 		} catch (FileNotFoundException e) {
@@ -50,6 +52,7 @@ public class projectInterface {
 		            depart =0;
 		            stopId=false;
 				}
+				input.nextLine();
 				for(int i =0;i<CompetitionDijkstra.stop_ids.size();i++) 
 				{
 					if(depart==CompetitionDijkstra.stop_ids.get(i)) {
@@ -70,6 +73,7 @@ public class projectInterface {
 			            arrival =0;
 			            stopId=false;
 					}
+					input.nextLine();
 					for(int i =0;i<CompetitionDijkstra.stop_ids.size();i++){
 						if(arrival==CompetitionDijkstra.stop_ids.get(i)){
 							stopId=true;
@@ -108,19 +112,19 @@ public class projectInterface {
 				for (char c : SearchTime.toCharArray()) {
 					chars.add(c);
 				}
-				
 				if(chars.size()!=8){
+					System.out.println("ERROR: Enter a valid Time\n");
+					error = true;
+				}
+				if(chars.get(0)=='2'&&chars.get(1)>='4'){
 					System.out.println("ERROR: Enter a valid Time\n");
 					error = true;
 				}
 				else if(chars.get(2)==colon&&chars.get(5)==colon&&chars.get(0)<='2'&&chars.get(6)<='5'&&chars.get(3)<='5'&&error!=true) 
 				{
 					System.out.println("Loading...");
-					StopTimeBST<LocalTime, stopTime> stopTime;
-					stopTime = Arrival_Time_Search.parseStopTimeInfo();
 					Arrival_Time_Search.search(stopTime, SearchTime);
 					System.out.println("\n");
-
 				}
 				else 
 				{

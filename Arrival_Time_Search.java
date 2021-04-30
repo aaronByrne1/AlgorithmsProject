@@ -13,6 +13,7 @@ public class Arrival_Time_Search {
 	{
 		if(listOfTripIds.isEmpty())
 			System.out.print("no trips matching this arrival time");
+			return;
 		List<stopTime> listOfTripIds = stopTimes.get(LocalTime.parse(arrivalTime));
 		
 		else
