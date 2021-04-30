@@ -41,7 +41,15 @@ public class projectInterface {
 			if(answer ==1) 
 			{
 				System.out.println("Enter departure bus stop:");
-				depart = input.nextInt();
+				try {
+					depart = input.nextInt();
+				}
+				catch(InputMismatchException ex){
+					System.out.println("Try again. (" +
+		                    "Incorrect input: an integer is required)");
+		            depart =0;
+		            stopId=false;
+				}
 				for(int i =0;i<CompetitionDijkstra.stop_ids.size();i++) 
 				{
 					if(depart==CompetitionDijkstra.stop_ids.get(i)) {
@@ -51,8 +59,17 @@ public class projectInterface {
 				}
 				if(stopId == true) 
 				{
+					stopId=false;
 					System.out.println("Enter arrival bus stop:");
-					arrival = input.nextInt();
+					try {
+						arrival = input.nextInt();
+					}
+					catch(InputMismatchException ex){
+						System.out.println("Try again. (" +
+			                    "Incorrect input: an integer is required)");
+			            arrival =0;
+			            stopId=false;
+					}
 					for(int i =0;i<CompetitionDijkstra.stop_ids.size();i++){
 						if(arrival==CompetitionDijkstra.stop_ids.get(i)){
 							stopId=true;
@@ -69,8 +86,11 @@ public class projectInterface {
 						System.out.println(path);
 					}
 					else {
-						System.out.println("Error: Path not possible");
+						System.out.println("Error: Path not possible\n");
 					}
+				}
+				if(stopId==false) {
+					System.out.println("Error: invalid stop number\n");
 				}
 			}
 			else if(answer ==2) 
@@ -90,7 +110,7 @@ public class projectInterface {
 				}
 				
 				if(chars.size()!=8){
-					System.out.println("ERROR: Enter a valid Time");
+					System.out.println("ERROR: Enter a valid Time\n");
 					error = true;
 				}
 				else if(chars.get(2)==colon&&chars.get(5)==colon&&chars.get(0)<='2'&&chars.get(6)<='5'&&chars.get(3)<='5'&&error!=true) 
@@ -104,7 +124,7 @@ public class projectInterface {
 				}
 				else 
 				{
-					System.out.println("ERROR: Enter a valid Time");
+					System.out.println("ERROR: Enter a valid Time\n");
 				}
 			}
 			else if(answer ==4) 
@@ -113,7 +133,7 @@ public class projectInterface {
 			}
 			else 
 			{
-				System.out.println("ERROR: Enter a valid number");
+				System.out.println("ERROR: Enter a valid number\n");
 			}
 		}
 	}
