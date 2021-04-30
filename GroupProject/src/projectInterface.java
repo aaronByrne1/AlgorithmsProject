@@ -6,6 +6,8 @@ import java.time.LocalTime;
 
 public class projectInterface {
 	public static void main(String[] args) {
+		StopTimeBST<LocalTime, stopTime> stopTime;
+		stopTime = Arrival_Time_Search.parseStopTimeInfo();
 		try {
 			searchByStopName.createTST();
 		} catch (FileNotFoundException e) {
@@ -116,11 +118,8 @@ public class projectInterface {
 				else if(chars.get(2)==colon&&chars.get(5)==colon&&chars.get(0)<='2'&&chars.get(6)<='5'&&chars.get(3)<='5'&&error!=true) 
 				{
 					System.out.println("Loading...");
-					StopTimeBST<LocalTime, stopTime> stopTime;
-					stopTime = Arrival_Time_Search.parseStopTimeInfo();
 					Arrival_Time_Search.search(stopTime, SearchTime);
 					System.out.println("\n");
-
 				}
 				else 
 				{
