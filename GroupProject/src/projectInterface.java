@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.time.LocalTime;
@@ -19,15 +20,23 @@ public class projectInterface {
 				+ "\n4: Exit";
 		boolean quit = false;
 		boolean error = false;
-		boolean stopId = true;
+		boolean stopId = false;
 		int depart=0;
 		int arrival = 0;
+		int answer =0;
 		CompetitionDijkstra bruh = new CompetitionDijkstra();
 		while(quit==false) 
 		{
 			error = false;
 			System.out.println(intro);
-			int answer = input.nextInt();
+			try {
+				answer = input.nextInt();
+			}
+			catch(InputMismatchException ex){
+				System.out.println("Try again. (" +
+	                    "Incorrect input: an integer is required)");
+	            answer =-1;
+			}
 			input.nextLine();
 			if(answer ==1) 
 			{
@@ -35,40 +44,29 @@ public class projectInterface {
 				depart = input.nextInt();
 				for(int i =0;i<CompetitionDijkstra.stop_ids.size();i++) 
 				{
-					if(depart==CompetitionDijkstra.stop_ids.get(i)) 
-					{
+					if(depart==CompetitionDijkstra.stop_ids.get(i)) {
 						stopId=true;
 					}
-					else 
-					{ 
-						stopId=false;
-					}
+					
 				}
-
 				if(stopId == true) 
 				{
 					System.out.println("Enter arrival bus stop:");
 					arrival = input.nextInt();
-					for(int i =0;i<CompetitionDijkstra.stop_ids.size();i++) 
-					{
-						if(arrival==CompetitionDijkstra.stop_ids.get(i)) 
-						{
+					for(int i =0;i<CompetitionDijkstra.stop_ids.size();i++){
+						if(arrival==CompetitionDijkstra.stop_ids.get(i)){
 							stopId=true;
-						}
-						else 
-						{ 
-							stopId=false;
 						}
 					}
 				}
 				if(stopId == true) 
 				{
 					if(CompetitionDijkstra.cost!=-1) {
+						String path = bruh.shortestPath(depart,arrival);
 						System.out.println("Cost:");
 						System.out.println(CompetitionDijkstra.cost);
 						System.out.println("Path:");
-						String what = bruh.shortestPath(depart,arrival);
-						System.out.println(what);
+						System.out.println(path);
 					}
 					else {
 						System.out.println("Error: Path not possible");
@@ -90,26 +88,18 @@ public class projectInterface {
 				for (char c : SearchTime.toCharArray()) {
 					chars.add(c);
 				}
+				
 				if(chars.size()!=8){
 					System.out.println("ERROR: Enter a valid Time");
 					error = true;
 				}
-				else if(chars.get(7)=='6'&&chars.get(8)!='0') 
+				else if(chars.get(2)==colon&&chars.get(5)==colon&&chars.get(0)<='2'&&chars.get(6)<='5'&&chars.get(3)<='5'&&error!=true) 
 				{
-					System.out.println("ERROR: Enter a valid Time");
-					error = true;
-				}
-				else if (chars.get(4)=='6'&&chars.get(5)!='0') 
-				{
-					System.out.println("ERROR: Enter a valid Time");
-					error = true;
-				}
-				else if(chars.get(3)!= colon&&chars.get(6)!= colon&&chars.get(1)<='2'&&chars.get(7)<='6'&&chars.get(4)<='6'&&error!=true) 
-				{
-
+					System.out.println("Loading...");
 					StopTimeBST<LocalTime, stopTime> stopTime;
 					stopTime = Arrival_Time_Search.parseStopTimeInfo();
 					Arrival_Time_Search.search(stopTime, SearchTime);
+					System.out.println("\n");
 
 				}
 				else 
