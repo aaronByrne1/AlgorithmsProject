@@ -52,6 +52,7 @@ public class projectInterface {
 		            depart =0;
 		            stopId=false;
 				}
+				input.nextLine();
 				for(int i =0;i<CompetitionDijkstra.stop_ids.size();i++) 
 				{
 					if(depart==CompetitionDijkstra.stop_ids.get(i)) {
@@ -72,6 +73,7 @@ public class projectInterface {
 			            arrival =0;
 			            stopId=false;
 					}
+					input.nextLine();
 					for(int i =0;i<CompetitionDijkstra.stop_ids.size();i++){
 						if(arrival==CompetitionDijkstra.stop_ids.get(i)){
 							stopId=true;
