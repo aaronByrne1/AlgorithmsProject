@@ -11,9 +11,10 @@ public class Arrival_Time_Search {
 
 	public static List<stopTime> search(StopTimeBST<LocalTime, stopTime> stopTimes, String arrivalTime)
 	{
-		List<stopTime> listOfTripIds = stopTimes.get(LocalTime.parse(arrivalTime));
 		if(listOfTripIds.isEmpty())
 			System.out.print("no trips matching this arrival time");
+		List<stopTime> listOfTripIds = stopTimes.get(LocalTime.parse(arrivalTime));
+		
 		else
 		{
 			for(int i=0; i<listOfTripIds.size(); i++)
