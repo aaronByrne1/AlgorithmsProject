@@ -110,8 +110,11 @@ public class projectInterface {
 				for (char c : SearchTime.toCharArray()) {
 					chars.add(c);
 				}
-				
 				if(chars.size()!=8){
+					System.out.println("ERROR: Enter a valid Time\n");
+					error = true;
+				}
+				if(chars.get(0)=='2'&&chars.get(1)>='4'){
 					System.out.println("ERROR: Enter a valid Time\n");
 					error = true;
 				}
