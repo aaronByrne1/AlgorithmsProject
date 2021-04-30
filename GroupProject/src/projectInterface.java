@@ -33,9 +33,9 @@ public class projectInterface {
 			{
 				System.out.println("Enter departure bus stop:");
 				depart = input.nextInt();
-				for(int i =0;i<CompetitionDijkstra.stop_ids.length;i++) 
+				for(int i =0;i<CompetitionDijkstra.stop_ids.size();i++) 
 				{
-					if(depart==CompetitionDijkstra.stop_ids[i]) 
+					if(depart==CompetitionDijkstra.stop_ids.get(i)) 
 					{
 						stopId=true;
 					}
@@ -49,9 +49,9 @@ public class projectInterface {
 				{
 					System.out.println("Enter arrival bus stop:");
 					arrival = input.nextInt();
-					for(int i =0;i<CompetitionDijkstra.stop_ids.length;i++) 
+					for(int i =0;i<CompetitionDijkstra.stop_ids.size();i++) 
 					{
-						if(arrival==CompetitionDijkstra.stop_ids[i]) 
+						if(arrival==CompetitionDijkstra.stop_ids.get(i)) 
 						{
 							stopId=true;
 						}

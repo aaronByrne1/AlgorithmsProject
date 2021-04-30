@@ -25,7 +25,7 @@ public class searchByStopName {
 			System.out.println(namesOfData[i]+": "+ data[i]);
 		}
 	}
-	
+
 	public static void createTST() throws FileNotFoundException {
 
 		File file =new File("stops.txt");
@@ -50,14 +50,15 @@ public class searchByStopName {
 
 	}
 	public static void functionality( String userInput) {
-		
+
 		
 		ArrayList<String> list = new ArrayList<String>();
-			
-			Spliterator<String> split =searchTree.keysWithPrefix(userInput.toUpperCase()).spliterator();
-			split.forEachRemaining((n)->list.add(n));
-			list.forEach((n)->printResult(searchTree.get(n), dataTypes));
-		
+
+		Spliterator<String> split =searchTree.keysWithPrefix(userInput.toUpperCase()).spliterator();
+		split.forEachRemaining((n)->list.add(n));
+		list.forEach((n)->printResult(searchTree.get(n), dataTypes));
+		System.out.println();
+
 	}
 
 }
