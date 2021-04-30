@@ -8,21 +8,19 @@ import java.util.Spliterator;
 
 public class searchByStopName {
 
-	/*public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
-		createTST();
-		Scanner s= new Scanner(System.in);
-		String input=s.nextLine();
-		functionality(input);
 
-	}*/
 	public static TST<Integer> searchTree = new TST<Integer>();
 	public static String[] dataTypes;
 	public static void printResult(String data[], String namesOfData[]) {
 		namesOfData[0]="stop_id";
 		System.out.println();
-		for(int i=0; i<data.length;i++) {
-			System.out.println(namesOfData[i]+": "+ data[i]);
+		if (data.length==0) {
+			System.out.println("No bus stop for this input.");
+		}
+		else {
+			for(int i=0; i<data.length;i++) {
+				System.out.println(namesOfData[i]+": "+ data[i]);
+			}
 		}
 	}
 
@@ -51,12 +49,17 @@ public class searchByStopName {
 	}
 	public static void functionality( String userInput) {
 
-		
+
 		ArrayList<String> list = new ArrayList<String>();
 
 		Spliterator<String> split =searchTree.keysWithPrefix(userInput.toUpperCase()).spliterator();
 		split.forEachRemaining((n)->list.add(n));
-		list.forEach((n)->printResult(searchTree.get(n), dataTypes));
+		if(list.size()!=0) {
+			list.forEach((n)->printResult(searchTree.get(n), dataTypes));
+		}
+		else {
+			System.out.println("No stop name returns for this input.");
+		}
 		System.out.println();
 
 	}
