@@ -39,7 +39,7 @@ public class CompetitionDijkstra {
 		try {
 
 			File file = new File("stops.txt");
-			stop_ids = new ArrayList<Integer>()
+			stop_ids = new ArrayList<Integer>();
 			Scanner scanner = new Scanner(file);
 			String infoline = scanner.nextLine();
 			while (scanner.hasNextLine()) {
