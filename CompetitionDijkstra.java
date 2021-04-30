@@ -31,7 +31,7 @@ public class CompetitionDijkstra {
 	@SuppressWarnings("unused")
 	private IndexMinPQ<Double> pq;
 	@SuppressWarnings("unused")
-	public int[] stop_ids;
+	public ArrayList<Integer> stop_ids;
 	public double cost;
 	private Graph G;
 
@@ -39,14 +39,12 @@ public class CompetitionDijkstra {
 		try {
 
 			File file = new File("stops.txt");
+			stop_ids = new ArrayList<Integer>()
 			Scanner scanner = new Scanner(file);
-			int i = 0;
 			String infoline = scanner.nextLine();
 			while (scanner.hasNextLine()) {
 				String[] stopSplit = scanner.nextLine().split(","); 
-				stop_ids[i] = Integer.parseInt(stopSplit[0]);
-				i++;
-				
+				stop_ids.add(Integer.parseInt(stopSplit[0]));		
 			}
 			G = new Graph(50000);
 			File stop_times = new File("stop_times.txt");
